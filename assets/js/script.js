@@ -2,7 +2,6 @@
 
 
 
-
 //modal button
 const closeModalButton = document.getElementById('close-modal'); // select the close button element of the modal
 const modal = document.getElementById('modal'); // Selects the modal element itself.
