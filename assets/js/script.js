@@ -2,9 +2,6 @@
 
 let storedChampArray = JSON.parse(localStorage.getItem('champs')) || new Array(10)
 
-//let champArray = 
-
-
 //modal button
 const closeModalButton = document.getElementById('close-modal'); // select the close button element of the modal
 const modal = document.getElementById('modal'); // Selects the modal element itself.
@@ -19,7 +16,6 @@ openModalButtons.forEach(button => {
     // Adds event listeners to each button that opens the modal.s
     button.addEventListener('click', () => {
         modal.classList.remove('hidden'); // Removes the 'hidden' class from the modal, making it visible.
-        console.log(button)
     })
     button.addEventListener('click', storeClick)  // Adds another event listener to store the clicked button.
 });
@@ -152,14 +148,36 @@ function initChamps() {
             $('.img').on('click', storeClick)
         }
     }
-
 }
 
+function resetChamps(){
+    storedChampArray = Array(10)
+    localStorage.setItem('champs', JSON.stringify(storedChampArray))
+    for(let i = 0; i < 10; i++){
+        const article = document.querySelector(`[data-index="${i}"]`)
+        $(article).find('.name').text(`Name:`)
+        $(article).find('.role').text(`Role:`)
+        $(article).find('.damage-type').text(`Damage Type:`)
 
-
-// console.log(champList)
+        const champIconDiv = $(article).find('.champ-icon') // Finds the element with the class 'champ-icon' within the grandparent element and empties it.
+        champIconDiv.empty()
+        champIconDiv.append(`<button class="add-champ hover:bg-indigo-400 text-white text-5xl border-8 pt-5 pb-8 px-10 font-bold rounded ring-offset-2 ring-2" id="open-modal">+</button>`)
+        $('#open-modal').on('click', function () {modal.classList.remove('hidden')})
+        $('#open-modal').on('click', storeClick)
+    }
+    const addChampButton = document.querySelectorAll('#open-modal')
+    addChampButton.forEach(button => {
+        // Adds event listeners to each button that opens the modal.s
+        button.addEventListener('click', () => {
+            modal.classList.remove('hidden'); // Removes the 'hidden' class from the modal, making it visible.
+        })
+        button.addEventListener('click', storeClick)  // Adds another event listener to store the clicked button.
+    });
+}
 
 getChampionData()
 initChamps()
+
+$('#reset').on('click', resetChamps)
 
 
