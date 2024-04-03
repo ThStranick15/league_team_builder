@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +10,9 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
+
 <body class="flex flex-col">
-    
+
 
     <!--header -->
     <header class="bg-slate-400 py-4">
@@ -27,51 +29,57 @@
         <section class="your-team">
             <h2 class="bg-green-300 text-center p-2">Your Team</h2>
 
-       <!-- modal -->
-        <div class="fixed z-10 inset-0 overflow-y-auto hidden" id="modal">
-            <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-                <!-- Modal overlay -->
-                <div class="fixed inset-0 transition-opacity" aria-hidden="true">
-                    <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
-                </div>  
+            <!-- modal -->
+            <div class="fixed z-10 inset-0 overflow-y-auto hidden" id="modal">
+                <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                    <!-- Modal overlay -->
+                    <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                        <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                    </div>
 
-                <!-- Modal content -->
-                <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
-                    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                        <!-- Modal header -->
-                        <div class="sm:flex sm:items-start">
-                            <div class="mt-3 text-center sm:mt-0 sm:text-left w-full">
-                                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-headline">
-                                    Modal Title
-                                </h3>
+                    <!-- Modal content -->
+                    <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+                        role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+                        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                            <!-- Modal header -->
+                            <div class="sm:flex sm:items-start">
+                                <div class="mt-3 text-center sm:mt-0 sm:text-left w-full">
+                                    <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-headline">
+                                        Modal Title
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="flex flex-wrap modal-content mt-2">
                             </div>
                         </div>
 
-                        <!-- Modal body -->
-                        <div class="flex flex-wrap modal-content mt-2">
-                        </div>
-                    </div>
-
-                    <!-- Modal footer -->
+                        <!-- Modal footer -->
                         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                            <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm" id="close-modal">
+                            <button type="button"
+                                class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
+                                id="close-modal">
                                 Close
                             </button>
                         </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-                 <!-- button and modal test End line -->
+            <!-- button and modal test End line -->
 
-                 <!-- Team Section -->
+            <!-- Team Section -->
             <article class="flex flex-row items-center team-card">
-                
+
                 <div class="role-icon box-border h-10 w-10 p-4 border-4 m-1 ...">
-                  </div>
-                
-                <div class="champ-icon flex justify-center items-center box-content w-40 h-40 border-8 bg-green-300 border-gray-700 m-3 ...">
-                    <button class="add-champ hover:bg-slate-400 text-white text-5xl border-8 pt-5 pb-8 px-10 font-bold rounded" id="open-modal">+</button>
+                </div>
+
+                <div
+                    class="champ-icon flex justify-center items-center box-content w-40 h-40 border-8 bg-green-300 border-gray-700 m-3 ...">
+                    <button
+                        class="add-champ hover:bg-slate-400 text-white text-5xl border-8 pt-5 pb-8 px-10 font-bold rounded"
+                        id="open-modal">+</button>
                 </div>
                 <div class="champ-info w-40 h-40 border-8 bg-gray-500 border-gray-700 m-3 p-2">
                     <p class="name">Name:</p>
@@ -80,33 +88,19 @@
                 </div>
             </article>
 
-            
+
             <article class="team-card flex flex-row items-center ">
                 <div class="role-icon box-border h-10 w-10 p-4 border-4 m-1 ...">
                     <!-- ... -->
-                  </div>
-                
-                  <div class="champ-icon flex justify-center items-center box-content w-40 h-40 border-8 bg-green-300 border-gray-700 m-3 ...">
-                    <!-- ... -->
-                    <button class="add-champ hover:bg-slate-400 text-white text-5xl  border-8 pt-5 pb-8 px-10 font-bold rounded" id="open-modal">+</button>
-                  </div>
-                <div class="champ-info w-40 h-40 border-8 bg-gray-500 border-gray-700 m-3 p-2">
-                    <p class="name">Name:</p>
-                    <p class="role">Role:</p>
-                    <p class="title">Title:</p>
                 </div>
-            </article>
 
-            
-            <article class="team-card flex flex-row items-center ">
-                <div class="role-icon box-border h-10 w-10 p-4 border-4 m-1 ...">
+                <div
+                    class="champ-icon flex justify-center items-center box-content w-40 h-40 border-8 bg-green-300 border-gray-700 m-3 ...">
                     <!-- ... -->
-                  </div>
-
-                  <div class="champ-icon flex justify-center items-center box-content w-40 h-40 border-8 bg-green-300 border-gray-700 m-3 ...">
-                    <!-- ... -->
-                    <button class="add-champ hover:bg-slate-400 text-white text-5xl  border-8 pt-5 pb-8 px-10 font-bold rounded" id="open-modal">+</button>
-                  </div>
+                    <button
+                        class="add-champ hover:bg-slate-400 text-white text-5xl  border-8 pt-5 pb-8 px-10 font-bold rounded"
+                        id="open-modal">+</button>
+                </div>
                 <div class="champ-info w-40 h-40 border-8 bg-gray-500 border-gray-700 m-3 p-2">
                     <p class="name">Name:</p>
                     <p class="role">Role:</p>
@@ -115,17 +109,18 @@
             </article>
 
 
-            
             <article class="team-card flex flex-row items-center ">
-
                 <div class="role-icon box-border h-10 w-10 p-4 border-4 m-1 ...">
                     <!-- ... -->
-                  </div>
-                
-                  <div class="champ-icon flex justify-center items-center box-content w-40 h-40 border-8 bg-green-300 border-gray-700 m-3 ...">
+                </div>
+
+                <div
+                    class="champ-icon flex justify-center items-center box-content w-40 h-40 border-8 bg-green-300 border-gray-700 m-3 ...">
                     <!-- ... -->
-                    <button class="add-champ hover:bg-slate-400 text-white text-5xl  border-8 pt-5 pb-8 px-10 font-bold rounded" id="open-modal">+</button>
-                  </div>
+                    <button
+                        class="add-champ hover:bg-slate-400 text-white text-5xl  border-8 pt-5 pb-8 px-10 font-bold rounded"
+                        id="open-modal">+</button>
+                </div>
                 <div class="champ-info w-40 h-40 border-8 bg-gray-500 border-gray-700 m-3 p-2">
                     <p class="name">Name:</p>
                     <p class="role">Role:</p>
@@ -134,17 +129,42 @@
             </article>
 
 
-            
+
             <article class="team-card flex flex-row items-center ">
 
                 <div class="role-icon box-border h-10 w-10 p-4 border-4 m-1 ...">
                     <!-- ... -->
-                  </div>
-                
-                  <div class="champ-icon flex justify-center items-center box-content w-40 h-40 border-8 bg-green-300 border-gray-700 m-3 ...">
+                </div>
+
+                <div
+                    class="champ-icon flex justify-center items-center box-content w-40 h-40 border-8 bg-green-300 border-gray-700 m-3 ...">
                     <!-- ... -->
-                    <button class="add-champ hover:bg-slate-400 text-white text-5xl  border-8 pt-5 pb-8 px-10 font-bold rounded" id="open-modal">+</button>
-                  </div>
+                    <button
+                        class="add-champ hover:bg-slate-400 text-white text-5xl  border-8 pt-5 pb-8 px-10 font-bold rounded"
+                        id="open-modal">+</button>
+                </div>
+                <div class="champ-info w-40 h-40 border-8 bg-gray-500 border-gray-700 m-3 p-2">
+                    <p class="name">Name:</p>
+                    <p class="role">Role:</p>
+                    <p class="title">Title:</p>
+                </div>
+            </article>
+
+
+
+            <article class="team-card flex flex-row items-center ">
+
+                <div class="role-icon box-border h-10 w-10 p-4 border-4 m-1 ...">
+                    <!-- ... -->
+                </div>
+
+                <div
+                    class="champ-icon flex justify-center items-center box-content w-40 h-40 border-8 bg-green-300 border-gray-700 m-3 ...">
+                    <!-- ... -->
+                    <button
+                        class="add-champ hover:bg-slate-400 text-white text-5xl  border-8 pt-5 pb-8 px-10 font-bold rounded"
+                        id="open-modal">+</button>
+                </div>
                 <div class="champ-info w-40 h-40 border-8 bg-gray-500 border-gray-700 m-3 p-2">
                     <p class="name">Name:</p>
                     <p class="role">Role:</p>
@@ -153,7 +173,7 @@
             </article>
 
         </section>
-    
+
         <!-- ENEMY TEAM  -->
         <section class="enemy-team">
             <h2 class="bg-red-300 text-center p-2">Enemy Team</h2>
@@ -165,14 +185,17 @@
                     <p class="role">Role:</p>
                     <p class="title">Title:</p>
                 </div>
-                <div class="champ-icon flex justify-center items-center champ-profile box-content w-40 h-40 border-8 bg-red-300 border-gray-700 m-3 ...">
+                <div
+                    class="champ-icon flex justify-center items-center champ-profile box-content w-40 h-40 border-8 bg-red-300 border-gray-700 m-3 ...">
                     <!-- ... -->
-                    <button class="add-champ hover:bg-slate-400 text-white text-5xl  border-8 pt-5 pb-8 px-10 font-bold rounded" id="open-modal">+</button>
-                  </div>
+                    <button
+                        class="add-champ hover:bg-slate-400 text-white text-5xl  border-8 pt-5 pb-8 px-10 font-bold rounded"
+                        id="open-modal">+</button>
+                </div>
 
-                  <div class="role-icon box-border h-10 w-10 p-4 border-4 m-1 ...">
+                <div class="role-icon box-border h-10 w-10 p-4 border-4 m-1 ...">
                     <!-- ... -->
-                  </div>
+                </div>
 
             </article>
 
@@ -182,14 +205,17 @@
                     <p class="role">Role:</p>
                     <p class="title">Title:</p>
                 </div>
-                <div class=" champ-icon flex justify-center items-center champ-profile box-content w-40 h-40 border-8 bg-red-300 border-gray-700 m-3 ...">
+                <div
+                    class=" champ-icon flex justify-center items-center champ-profile box-content w-40 h-40 border-8 bg-red-300 border-gray-700 m-3 ...">
                     <!-- ... -->
-                    <button class="add-champ hover:bg-slate-400 text-white text-5xl  border-8 pt-5 pb-8 px-10 font-bold rounded" id="open-modal">+</button>
-                  </div>
+                    <button
+                        class="add-champ hover:bg-slate-400 text-white text-5xl  border-8 pt-5 pb-8 px-10 font-bold rounded"
+                        id="open-modal">+</button>
+                </div>
 
-                  <div class="role-icon box-border h-10 w-10 p-4 border-4 m-1 ...">
+                <div class="role-icon box-border h-10 w-10 p-4 border-4 m-1 ...">
                     <!-- ... -->
-                  </div>
+                </div>
 
             </article>
 
@@ -199,14 +225,17 @@
                     <p class="role">Role:</p>
                     <p class="title">Title:</p>
                 </div>
-                <div class=" champ-icon flex justify-center items-center champ-profile box-content w-40 h-40 border-8 bg-red-300 border-gray-700 m-3 ...">
+                <div
+                    class=" champ-icon flex justify-center items-center champ-profile box-content w-40 h-40 border-8 bg-red-300 border-gray-700 m-3 ...">
                     <!-- ... -->
-                    <button class="add-champ hover:bg-slate-400 text-white text-5xl  border-8 pt-5 pb-8 px-10 font-bold rounded" id="open-modal">+</button>
-                  </div>
+                    <button
+                        class="add-champ hover:bg-slate-400 text-white text-5xl  border-8 pt-5 pb-8 px-10 font-bold rounded"
+                        id="open-modal">+</button>
+                </div>
 
-                  <div class="role-icon box-border h-10 w-10 p-4 border-4 m-1 ...">
+                <div class="role-icon box-border h-10 w-10 p-4 border-4 m-1 ...">
                     <!-- ... -->
-                  </div>
+                </div>
             </article>
 
             <article class="team-card flex flex-row items-center ">
@@ -215,14 +244,17 @@
                     <p class="role">Role:</p>
                     <p class="title">Title:</p>
                 </div>
-                <div class=" champ-icon flex justify-center items-center champ-profile box-content w-40 h-40 border-8 bg-red-300 border-gray-700 m-3 ...">
+                <div
+                    class=" champ-icon flex justify-center items-center champ-profile box-content w-40 h-40 border-8 bg-red-300 border-gray-700 m-3 ...">
                     <!-- ... -->
-                    <button class="add-champ hover:bg-slate-400 text-white text-5xl  border-8 pt-5 pb-8 px-10 font-bold rounded" id="open-modal">+</button>
-                  </div>
+                    <button
+                        class="add-champ hover:bg-slate-400 text-white text-5xl  border-8 pt-5 pb-8 px-10 font-bold rounded"
+                        id="open-modal">+</button>
+                </div>
 
-                  <div class="role-icon box-border h-10 w-10 p-4 border-4 m-1 ...">
+                <div class="role-icon box-border h-10 w-10 p-4 border-4 m-1 ...">
                     <!-- ... -->
-                  </div>
+                </div>
             </article>
 
             <article class="team-card flex flex-row items-center ">
@@ -231,14 +263,17 @@
                     <p class="role">Role:</p>
                     <p class="title">Title:</p>
                 </div>
-                <div class=" champ-icon flex justify-center items-center champ-profile box-content w-40 h-40 border-8 bg-red-300 border-gray-700 m-3 ...">
+                <div
+                    class=" champ-icon flex justify-center items-center champ-profile box-content w-40 h-40 border-8 bg-red-300 border-gray-700 m-3 ...">
                     <!-- ... -->
-                    <button class="add-champ hover:bg-slate-400 text-white text-5xl  border-8 pt-5 pb-8 px-10 font-bold rounded" id="open-modal">+</button>
-                  </div>
+                    <button
+                        class="add-champ hover:bg-slate-400 text-white text-5xl  border-8 pt-5 pb-8 px-10 font-bold rounded"
+                        id="open-modal">+</button>
+                </div>
 
-                  <div class="role-icon box-border h-10 w-10 p-4 border-4 m-1 ...">
+                <div class="role-icon box-border h-10 w-10 p-4 border-4 m-1 ...">
                     <!-- ... -->
-                  </div>
+                </div>
             </article>
 
         </section>
@@ -249,8 +284,9 @@
         <p>&copy: Copyright 2024</p>
         <p>Created By: Thomas Stranick, Muhsin Tarik Orgerim, Sylvester Assiamah, Joshua Bruey, Alice Ayres</p>
     </footer>
-    
+
     <!--  -->
     <script src="assets/js/script.js"></script>
 </body>
+
 </html>
