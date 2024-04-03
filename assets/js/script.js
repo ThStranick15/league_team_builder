@@ -92,16 +92,12 @@ function addChamp(e){
     })
     .then(function (data) {
         console.log('Fetched data:', data);
-        processChampionDetails(data)
+        let damage = data.tacticalInfo.damageType;
+        damage = damage.replace('k', '')
+        const typeElement = $(grandparent).find('.damage-type')
+        typeElement.text(`Damage Type: ${damage}`)
     })
 }
-
-function processChampionDetails(championDetails) {
-    console.log('Champion Details:', championDetails);
-    const damage = championDetails.tacticalInfo.damageType;
-    console.log(`damage:`, damage)
-    }
-
 
 function getChampionData() {
     const url = 'https://ddragon.leagueoflegends.com/cdn/14.6.1/data/en_US/champion.json';
