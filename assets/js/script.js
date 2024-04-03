@@ -36,8 +36,9 @@ function processChampionList (championData) {
     for(let champion in championData) {
         const name = championData[champion].name
         const title = championData[champion].title
-        const tags = championData[champion].tags[0]
+        const tags = championData[champion].tags
         const picture = championData[champion].image.full
+        const key = championData[champion].key
        
 
         // const objectChampion = {
@@ -48,7 +49,7 @@ function processChampionList (championData) {
 
         // champions.push(objectChampion)
 
-        modalContent.append(`<div data-title="${title}" data-tags="${tags}" data-picture="${picture}" class="champion-name p-1">${name}</div>`)
+        modalContent.append(`<div data-title="${title}" data-tags="${tags}" data-picture="${picture}" data-key="${key}" class="champion-name p-1">${name}</div>`)
     }
     
     //Add event listener to all chammp names
@@ -61,13 +62,16 @@ function addChamp(e){
     const champTitle = e.target.getAttribute('data-title') // Retrieves the title of the champion from the clicked element's data attribute.
     const champTags = e.target.getAttribute('data-tags') // Retrieves the role/tag of the champion from the clicked element's data attribute.
     const picture = e.target.getAttribute('data-picture')  // Retrieves the picture of the champion from the clicked element's data attribute.
+    const champKey = e.target.getAttribute('data-key') 
+    const tagsArray = champTags.split(',') // Split the tags into an array and join them with spaces.
+    const formattedTags = tagsArray.join(', ') // Add a space after each tag.
     const parent = buttonClicked.parentElement // Finds the parent element of the clicked button.
     const grandparent = parent.parentElement   // Finds the parent's parent element (grandparent) which likely holds the champion details.
     const nameElement = $(grandparent).find('.name') // Finds the element with the class 'name' within the grandparent element.
     const titleElement = $(grandparent).find('.title')  // Finds the element with the class 'title' within the grandparent element.
     const roleElement = $(grandparent).find('.role')   // Finds the element with the class 'role' within the grandparent element.
-    nameElement.text(`Name: ${champName}, ${champTitle}`)  // Updates the text content of the name element to include the champion's name and title.
-    roleElement.text(`Role: ${champTags}`) // Updates the text content of the role element to include the champion's role/tag.
+    nameElement.text(`${champName}, ${champTitle}`)  // Updates the text content of the name element to include the champion's name and title.
+    roleElement.text(`Role: ${formattedTags}`) // Updates the text content of the role element to include the champion's role/tag.
     const myImage = new Image(100, 100)    // Creates a new image element with width and height of 100px and sets its source.
     myImage.src = `https://ddragon.leagueoflegends.com/cdn/14.7.1/img/champion/${picture}`
     
@@ -78,9 +82,22 @@ function addChamp(e){
     $('.img').on('click', () => {
         modal.classList.remove('hidden'); // Removes the 'hidden' class from the modal, making it visible.
     })
-    $('.img').on('click', storeClick) 
-}
+    $('.img').on('click', storeClick)
+    
+    const url = `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champions/${champKey}.json`;
 
+    fetch(url)
+    .then(function (res) {
+        return res.json();
+    })
+    .then(function (data) {
+        console.log('Fetched data:', data);
+        let damage = data.tacticalInfo.damageType;
+        damage = damage.replace('k', '')
+        const typeElement = $(grandparent).find('.damage-type')
+        typeElement.text(`Damage Type: ${damage}`)
+    })
+}
 
 function getChampionData() {
     const url = 'https://ddragon.leagueoflegends.com/cdn/14.6.1/data/en_US/champion.json';
@@ -95,6 +112,7 @@ function getChampionData() {
             processChampionList(championList)
         })
 }
+
 
 
 // console.log(champList)
