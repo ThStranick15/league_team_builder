@@ -88,40 +88,20 @@ function addChamp(e){
 
     fetch(url)
     .then(function (res) {
-        if (!res.ok) {
-            throw new Error('Network response was not ok');
-        }
         return res.json();
     })
     .then(function (data) {
         console.log('Fetched data:', data);
-        
-        if (data && data.data && data.data.stats) {
-            const championDetails = data.data.stats;
-            processChampionDetails(championDetails);
-        } else {
-            console.log('Champion details data is missing or undefined in the API response');
-        }
+        processChampionDetails(data)
     })
-    .catch(function (error) {
-        console.error('Error fetching data:', error);
-    });
 }
 
 function processChampionDetails(championDetails) {
     console.log('Champion Details:', championDetails);
-
-    for (let champion in championDetails) {
-        console.log('Current Champion:', champion);
-
-        if (championDetails[champion].stats && championDetails[champion].stats.tacticalInfo && championDetails[champion].stats.tacticalInfo.damageType) {
-            const damage = championDetails[champion].stats.tacticalInfo.damageType;
-            console.log('Damage Type:', damage);
-        } else {
-            console.log('Damage type not found for champion:', champion);
-        }
+    const damage = championDetails.tacticalInfo.damageType;
+    console.log(`damage:`, damage)
     }
-}
+
 
 function getChampionData() {
     const url = 'https://ddragon.leagueoflegends.com/cdn/14.6.1/data/en_US/champion.json';
