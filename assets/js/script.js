@@ -43,7 +43,7 @@ function processChampionList(championData) {
             const picture = championData[champion].image.full
             const key = championData[champion].key
 
-            modalContent.append(`<div data-name="${name}" data-title="${title}" data-tags="${tags}" data-picture="${picture}" data-key="${key}" class="champion-name p-1"><img src="https://ddragon.leagueoflegends.com/cdn/14.7.1/img/champion/${picture}" width="100" height="100">${name}</div>`)
+            modalContent.append(`<div data-name="${name}" data-title="${title}" data-tags="${tags}" data-picture="${picture}" data-key="${key}" class="champion-name transition ease-in-out delay-0 hover:bg-slate-100/30 hover:-translate-y-1 hover:scale-110 p-1"><img src="https://ddragon.leagueoflegends.com/cdn/14.7.1/img/champion/${picture}" width="100" height="100">${name} </div>`)
         }
     }
 
