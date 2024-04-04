@@ -1,6 +1,7 @@
 // api 
 
 let storedChampArray = JSON.parse(localStorage.getItem('champs')) || new Array(10)
+let championList;
 
 //modal button
 const closeModalButton = document.getElementById('close-modal'); // select the close button element of the modal
@@ -32,14 +33,19 @@ closeModalButton.addEventListener('click', () => {
 
 //Takes in API call and creates divs for each champ
 function processChampionList(championData) {
+    modalContent.empty()
+    console.log(storedChampArray)
+    let storedChampNames = storedChampArray.map(c => c?c.champName:c)
     for (let champion in championData) {
-        const name = championData[champion].name
-        const title = championData[champion].title
-        const tags = championData[champion].tags
-        const picture = championData[champion].image.full
-        const key = championData[champion].key
+        if (!storedChampNames.includes(championData[champion].name)) {
+            const name = championData[champion].name
+            const title = championData[champion].title
+            const tags = championData[champion].tags
+            const picture = championData[champion].image.full
+            const key = championData[champion].key
 
-        modalContent.append(`<div data-name="${name}" data-title="${title}" data-tags="${tags}" data-picture="${picture}" data-key="${key}" class="champion-name p-1"><img src="https://ddragon.leagueoflegends.com/cdn/14.7.1/img/champion/${picture}" width="100" height="100">${name}</div>`)
+            modalContent.append(`<div data-name="${name}" data-title="${title}" data-tags="${tags}" data-picture="${picture}" data-key="${key}" class="champion-name p-1"><img src="https://ddragon.leagueoflegends.com/cdn/14.7.1/img/champion/${picture}" width="100" height="100">${name}</div>`)
+        }
     }
 
     modalContent.on('click', function (e) {
@@ -52,6 +58,9 @@ function processChampionList(championData) {
 function addChamp(e) {
     modal.classList.add('hidden')   // Hides the modal when a champion is selected.
     const champName = e.getAttribute('data-name')  // Retrieves the name of the champion from the clicked element.
+    // if (isChampionSelected(champName)) {
+    //     return
+    // }
     const champTitle = e.getAttribute('data-title') // Retrieves the title of the champion from the clicked element's data attribute.
     const champTags = e.getAttribute('data-tags') // Retrieves the role/tag of the champion from the clicked element's data attribute.
     const picture = e.getAttribute('data-picture')  // Retrieves the picture of the champion from the clicked element's data attribute.
@@ -77,9 +86,9 @@ function addChamp(e) {
     })
     $('.img').on('click', storeClick)
 
+
     //Adds Damage Type to Champ Cards
     const url = `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champions/${champKey}.json`;
-
 
 
     fetch(url)
@@ -87,14 +96,15 @@ function addChamp(e) {
             return res.json();
         })
         .then(function (data) {
+            console.log(data)
             let damage = data.tacticalInfo.damageType;
             damage = damage.replace('k', '')
             const typeElement = $(grandparent).find('.damage-type')
             typeElement.text(`Damage Type: ${damage}`)
             return damage
         })
-        .then(function (damage){
-            
+        .then(function (damage) {
+
             const objectChampion = {
                 champName: champName,
                 champTitles: champTitle,
@@ -102,17 +112,18 @@ function addChamp(e) {
                 champPictureSrc: myImageSrc,
                 champDamageType: damage
             }
-        
+
             const champIndex = grandparent.getAttribute('data-index') //Add data-index on each champ card to assign it to array value
-        
             storedChampArray.splice(champIndex, 1, objectChampion)
-        
             localStorage.setItem('champs', JSON.stringify(storedChampArray))
-        
             console.log(storedChampArray)
+            processChampionList(championList)
         })
 
-   
+    // function isChampionSelected(champName) {
+    //     return storedChampArray.some(champs => champs.champName === champName)
+    // } 
+
 }
 
 function getChampionData() {
@@ -123,24 +134,24 @@ function getChampionData() {
             return res.json()
         })
         .then(function (data) {
-            const championList = data.data
+            championList = data.data
             console.log(data.data)
             processChampionList(championList)
         })
 }
 
 function initChamps() {
-    for(let i = 0; i < 10; i++){
+    for (let i = 0; i < 10; i++) {
         const article = document.querySelector(`[data-index="${i}"]`)
         const champ = storedChampArray[i]
-        if(champ){
+        if (champ) {
             $(article).find('.name').text(`${champ.champName}, ${champ.champTitles}`)
             $(article).find('.role').text(`Role: ${champ.championTags}`)
             $(article).find('.damage-type').text(`Damage Type: ${champ.champDamageType}`)
 
             const champIconDiv = $(article).find('.champ-icon') // Finds the element with the class 'champ-icon' within the grandparent element and empties it.
             champIconDiv.empty()
-            champIconDiv.append(`<img class="img" src="${champ.champPictureSrc}"></img>`) 
+            champIconDiv.append(`<img class="img" src="${champ.champPictureSrc}"></img>`)
 
             $('.img').on('click', () => {
                 modal.classList.remove('hidden'); // Removes the 'hidden' class from the modal, making it visible.
@@ -150,10 +161,11 @@ function initChamps() {
     }
 }
 
-function resetChamps(){
+function resetChamps() {
     storedChampArray = Array(10)
     localStorage.setItem('champs', JSON.stringify(storedChampArray))
-    for(let i = 0; i < 10; i++){
+    processChampionList(championList)
+    for (let i = 0; i < 10; i++) {
         const article = document.querySelector(`[data-index="${i}"]`)
         $(article).find('.name').text(`Name:`)
         $(article).find('.role').text(`Role:`)
@@ -162,7 +174,7 @@ function resetChamps(){
         const champIconDiv = $(article).find('.champ-icon') // Finds the element with the class 'champ-icon' within the grandparent element and empties it.
         champIconDiv.empty()
         champIconDiv.append(`<button class="add-champ hover:bg-indigo-400 text-white text-5xl border-8 pt-5 pb-8 px-10 font-bold rounded ring-offset-2 ring-2" id="open-modal">+</button>`)
-        $('#open-modal').on('click', function () {modal.classList.remove('hidden')})
+        $('#open-modal').on('click', function () { modal.classList.remove('hidden') })
         $('#open-modal').on('click', storeClick)
     }
     const addChampButton = document.querySelectorAll('#open-modal')
