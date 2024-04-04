@@ -9,7 +9,6 @@ const modal = document.getElementById('modal'); // Selects the modal element its
 const modalContent = $('.modal-content'); // Selects the modal content using jQuery.
 const addChampButton = $('.add-champ')   // Selects the add champion button using jQuery.
 const openModalButtons = document.querySelectorAll('#open-modal'); // Selects all elements with the id 'open-modal', which likely are buttons that open the modal.
-//const champions = []
 let buttonClicked = null  // Initializes a variable to hold the clicked button.
 
 
@@ -58,9 +57,6 @@ function processChampionList(championData) {
 function addChamp(e) {
     modal.classList.add('hidden')   // Hides the modal when a champion is selected.
     const champName = e.getAttribute('data-name')  // Retrieves the name of the champion from the clicked element.
-    // if (isChampionSelected(champName)) {
-    //     return
-    // }
     const champTitle = e.getAttribute('data-title') // Retrieves the title of the champion from the clicked element's data attribute.
     const champTags = e.getAttribute('data-tags') // Retrieves the role/tag of the champion from the clicked element's data attribute.
     const picture = e.getAttribute('data-picture')  // Retrieves the picture of the champion from the clicked element's data attribute.
@@ -119,10 +115,6 @@ function addChamp(e) {
             console.log(storedChampArray)
             processChampionList(championList)
         })
-
-    // function isChampionSelected(champName) {
-    //     return storedChampArray.some(champs => champs.champName === champName)
-    // } 
 
 }
 
