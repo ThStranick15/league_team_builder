@@ -159,9 +159,9 @@ function resetChamps() {
     processChampionList(championList)
     for (let i = 0; i < 10; i++) {
         const article = document.querySelector(`[data-index="${i}"]`)
-        $(article).find('.name').text(`Name:`)
-        $(article).find('.role').text(`Role:`)
-        $(article).find('.damage-type').text(`Damage Type:`)
+        $(article).find('.name').text(`Champion`)
+        $(article).find('.role').text(`Role`)
+        $(article).find('.damage-type').text(`Damage Type`)
 
         const champIconDiv = $(article).find('.champ-icon') // Finds the element with the class 'champ-icon' within the grandparent element and empties it.
         champIconDiv.empty()
